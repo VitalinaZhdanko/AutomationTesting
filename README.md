@@ -29,5 +29,4 @@ In order to get the report in the Cypress Dashboard you should add some more par
 ```
 npx cypress run -b chrome --record --key ed750b38-9b82-448c-9877-25b928c6c766
 ```
-**--record** means that transfer results to the Cypress Dashboard is on.
-**--key** parameter followed by value **ed750b38-9b82-448c-9877-25b928c6c766** is used for access to project in the Cypress Dashboard.
+
