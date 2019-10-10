@@ -16,3 +16,18 @@ It will install all components based on *package.json* file into node_modules fo
 #### 2.3 As soon as components are loaded you may run testing scripts.
 ##### 2.3.1 Run all tests
 *If you are not interested in seeing GUI while tests execution you may run tests in [Electron](https://www.npmjs.com/package/electron)*
+To run all tests in Electron:
+```
+npx cypress run
+```
+*If you prefer to see the application GUI while tests execution you may run tests in Chrome*
+To run all tests in Chrome:
+```
+npx cypress run -b chrome
+```
+In order to get the report in the Cypress Dashboard you should add some more parameters:
+```
+npx cypress run -b chrome --record --key ed750b38-9b82-448c-9877-25b928c6c766
+```
+**--record** means that transfer results to the Cypress Dashboard is on.
+**--key** parameter followed by value **ed750b38-9b82-448c-9877-25b928c6c766** is used for access to project in the Cypress Dashboard.
