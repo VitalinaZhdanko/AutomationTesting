@@ -49,7 +49,8 @@ describe('Test for reqres', () => {
 
     it('Negative: POST request - login unsuccessful', () => {
         cy.request({
-            method: 'POST', url: '/api/login', failOnStatusCode: false, body:
+            method: 'POST', url: '/api/login', failOnStatusCode: false,
+            body:
                 {
                     "email": "peter@klaven"
                 }
