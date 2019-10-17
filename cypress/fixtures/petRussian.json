@@ -1,16 +1,14 @@
 {
   "id": 1,
   "category": {
-    "id": 0,
-    "name": "string"
+    "id": 1,
+    "name": "dogs"
   },
   "name": "doggie",
-  "photoUrls": [
-    "string"
-  ],
+  "photoUrls": [],
   "tags": [
     {
-      "id": 0,
+      "id": 1,
       "name": "string"
     }
   ],
