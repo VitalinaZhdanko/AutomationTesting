@@ -2,15 +2,15 @@
   "id": 1,
   "category": {
     "id": 1,
-    "name": "dogs"
+    "name": "ИмяКатегории"
   },
-  "name": "doggie",
+  "name": "ИмяСобаки",
   "photoUrls": [],
   "tags": [
     {
       "id": 1,
-      "name": "string"
+      "name": "ИмяТега"
     }
   ],
-  "status": "available"
+  "status": "доступный"
 }
