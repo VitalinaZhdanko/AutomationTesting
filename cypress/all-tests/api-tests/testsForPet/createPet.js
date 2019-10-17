@@ -6,6 +6,8 @@ import {
     getPetRequestData,
     boundaryValue
 } from "../../../utils/requestsDataGenerator"
+import {PET_LIMIT} from "../../../utils/limits";
+import {fillTags,fillUrls} from "../../../utils/requestsDataGenerator"
 
 describe('Tests for create Pet', () => {
 
@@ -168,31 +170,40 @@ describe('Tests for create Pet', () => {
     })
 
     it('Negative: boundary value for "name" field C23', () => {
-       let requestData=boundaryValue(1);
-        createPet(requestData, false).then(response => {
+       let dataSet=getPetRequestData(PET_LIMIT, true);
+        dataSet.name= Chance().string({length: PET_LIMIT.name.max + 1});
+        createPet(dataSet, false).then(response => {
             expect(response.status).to.eq(400);
-            expect(response.message).to.eq('Length must be between min and max');
+            expect(response.message).to.deep.eq('fieldName','@fieldName');
+            expect(response.message).to.deep.eq('fieldError','Length must be between @minLength and @maxLength');
         })
-    })
+    });
+
     it('Negative: boundary value for "category" field C24', () => {
-        let requestData=boundaryValue(2);
-        createPet(requestData, false).then(response => {
+        let dataSet=getPetRequestData(PET_LIMIT, true);
+        dataSet.category.name = Chance().string({length: PET_LIMIT.category.name.max + 1});
+        createPet(dataSet, false).then(response => {
             expect(response.status).to.eq(400);
-            expect(response.message).to.eq('Length must be between min and max');
+           expect(response.message).to.deep.eq('fieldName','@fieldName');
+          expect(response.message).to.deep.eq('fieldError','Length must be between @minLength and @maxLength');
         })
-    })
+    });
     it('Negative: boundary value for "photoUrls" field C25', () => {
-        let requestData=boundaryValue(3);
-        createPet(requestData, false).then(response => {
+        let dataSet=getPetRequestData(PET_LIMIT, true);
+        dataSet.photoUrls=fillUrls(PET_LIMIT.photoUrls.urlCount.max+1);
+        createPet(dataSet, false).then(response => {
             expect(response.status).to.eq(400);
-            expect(response.message).to.eq('Length must be between min and max');
+            expect(response.message).to.deep.eq('fieldName','@fieldName');
+          expect(response.message).to.deep.eq('fieldError','Length must be between @minLength and @maxLength');
         })
     })
     it('Negative: boundary value for "tags" field C26', () => {
-        let requestData=boundaryValue(4);
-        createPet(requestData, false).then(response => {
+        let dataSet=getPetRequestData(PET_LIMIT, true);
+        dataSet.tags=fillTags(PET_LIMIT.tags.urlCount.maxValue+1)
+        createPet(dataSet, false).then(response => {
             expect(response.status).to.eq(400);
-            expect(response.message).to.eq('Length must be between min and max');
+            expect(response.message).to.deep.eq('fieldName','@fieldName');
+            expect(response.message).to.deep.eq('fieldError','Length must be between @minLength and @maxLength');
         })
     })
 
