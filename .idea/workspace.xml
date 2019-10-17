@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b325a4ce-7381-48de-958e-f2cc823f6c39" name="Default" comment="realise_3">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cypress/utils/requestsDataGenerator.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cypress/all-tests/api-tests/testsForPet/createPet.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cypress.json" afterPath="$PROJECT_DIR$/cypress.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cypress/all-tests/api-tests/testsForPet/deletePet.js" afterPath="$PROJECT_DIR$/cypress/all-tests/api-tests/testsForPet/deletePet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cypress/all-tests/api-tests/testsForPet/getPet.js" afterPath="$PROJECT_DIR$/cypress/all-tests/api-tests/testsForPet/getPet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cypress/all-tests/api-tests/testsForPet/updatePet.js" afterPath="$PROJECT_DIR$/cypress/all-tests/api-tests/testsForPet/updatePet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cypress/fixtures/petRussian.json" afterPath="$PROJECT_DIR$/cypress/fixtures/petRussian.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cypress/utils/requestsDataGenerator.js" afterPath="$PROJECT_DIR$/cypress/utils/requestsDataGenerator.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,23 +23,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="requestsDataGenerator.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cypress/utils/requestsDataGenerator.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2026">
-              <caret line="180" column="2" lean-forward="false" selection-start-line="180" selection-start-column="2" selection-end-line="180" selection-end-column="2" />
-              <folding>
-                <element signature="e#4#33#0" expanded="true" />
-                <element signature="e#3213#3842#0" expanded="false" />
-                <element signature="e#4715#5006#0" expanded="false" />
-                <marker date="1571341461819" expanded="false" signature="5259:5553" ph="{...}" />
-                <marker date="1571341461819" expanded="false" signature="5604:5731" ph="{...}" />
-                <marker date="1571341461819" expanded="false" signature="5782:6054" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="limits.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cypress/utils/limits.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -56,13 +33,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="createPet.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="createPet.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cypress/all-tests/api-tests/testsForPet/createPet.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+            <state relative-caret-position="103">
+              <caret line="176" column="50" lean-forward="true" selection-start-line="176" selection-start-column="50" selection-end-line="176" selection-end-column="50" />
               <folding>
+                <element signature="e#0#27#0" expanded="true" />
                 <element signature="e#1737#2593#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requestsDataGenerator.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cypress/utils/requestsDataGenerator.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="69" column="19" lean-forward="false" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
+              <folding>
+                <element signature="e#4#33#0" expanded="true" />
+                <element signature="e#3215#3844#0" expanded="false" />
+                <element signature="e#4717#5008#0" expanded="false" />
+                <marker date="1571345797287" expanded="false" signature="5261:5555" ph="{...}" />
+                <marker date="1571345797287" expanded="false" signature="5606:5733" ph="{...}" />
+                <marker date="1571345797287" expanded="false" signature="5784:6056" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -83,6 +78,9 @@
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
+    </option>
+    <option name="PUSH_TAGS">
+      <GitPushTagMode />
     </option>
   </component>
   <component name="IdeDocumentHistory">
@@ -290,7 +288,7 @@
       <workItem from="1570791609405" duration="2899000" />
       <workItem from="1571240625280" duration="8597000" />
       <workItem from="1571295393379" duration="3589000" />
-      <workItem from="1571319709333" duration="20501000" />
+      <workItem from="1571319709333" duration="22619000" />
     </task>
     <task id="LOCAL-00001" summary="realise">
       <created>1570744662250</created>
@@ -313,11 +311,18 @@
       <option name="project" value="LOCAL" />
       <updated>1570788845745</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="realise_3">
+      <created>1571341476454</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1571341476454</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115470000" />
+    <option name="totallyTimeSpent" value="117588000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -336,9 +341,9 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33387887" sideWeight="0.50595236" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38134205" sideWeight="0.4940476" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.022913257" sideWeight="0.4940476" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44189852" sideWeight="0.4940476" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44189852" sideWeight="0.4940476" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -741,27 +746,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cypress/all-tests/api-tests/testsForPet/createPet.js">
+    <entry file="file://$PROJECT_DIR$/cypress/utils/requestsDataGenerator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        <state relative-caret-position="256">
+          <caret line="69" column="19" lean-forward="false" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
           <folding>
-            <element signature="e#1737#2593#0" expanded="false" />
+            <element signature="e#4#33#0" expanded="true" />
+            <element signature="e#3215#3844#0" expanded="false" />
+            <element signature="e#4717#5008#0" expanded="false" />
+            <marker date="1571345797287" expanded="false" signature="5261:5555" ph="{...}" />
+            <marker date="1571345797287" expanded="false" signature="5606:5733" ph="{...}" />
+            <marker date="1571345797287" expanded="false" signature="5784:6056" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cypress/utils/requestsDataGenerator.js">
+    <entry file="file://$PROJECT_DIR$/cypress/all-tests/api-tests/testsForPet/createPet.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2026">
-          <caret line="180" column="2" lean-forward="false" selection-start-line="180" selection-start-column="2" selection-end-line="180" selection-end-column="2" />
+        <state relative-caret-position="103">
+          <caret line="176" column="50" lean-forward="true" selection-start-line="176" selection-start-column="50" selection-end-line="176" selection-end-column="50" />
           <folding>
-            <element signature="e#4#33#0" expanded="true" />
-            <element signature="e#3213#3842#0" expanded="false" />
-            <element signature="e#4715#5006#0" expanded="false" />
-            <marker date="1571341461819" expanded="false" signature="5259:5553" ph="{...}" />
-            <marker date="1571341461819" expanded="false" signature="5604:5731" ph="{...}" />
-            <marker date="1571341461819" expanded="false" signature="5782:6054" ph="{...}" />
+            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#1737#2593#0" expanded="false" />
           </folding>
         </state>
       </provider>

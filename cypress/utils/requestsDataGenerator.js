@@ -67,10 +67,10 @@
         if (param === 2)
         { let dataSet = getPetRequestData();
         dataSet.category.name = Chance().string({length: PET_LIMIT.category.name.max + 1});}
-    if  (param ===3)
+    if  (param === 3)
     {let dataSet = getPetRequestData();
            dataSet.photoUrls=fillUrls(PET_LIMIT.photoUrls.urlCount.max+1);}
-       if (param===4)
+       if (param=== 4)
        {let dataSet = getPetRequestData();
         dataSet.tags=fillTags(PET_LIMIT.tags.urlCount.maxValue+1)}
     }
