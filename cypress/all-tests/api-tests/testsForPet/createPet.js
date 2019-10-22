@@ -4,7 +4,7 @@ import {API_URL} from "../../../service/apiSettings"
 import {
     DATA_OPTIONS,
     getPetRequestData,
-    boundaryValue
+    POOLS
 } from "../../../utils/requestsDataGenerator"
 import {PET_LIMIT} from "../../../utils/limits";
 import {fillTags,fillUrls} from "../../../utils/requestsDataGenerator"
@@ -14,7 +14,10 @@ describe('Tests for create Pet', () => {
     let testingData = [
         {description: 'All fields: Max values C2', requestData: getPetRequestData(DATA_OPTIONS.MAX)},
         {description: 'All fields: Min values C1', requestData: getPetRequestData(DATA_OPTIONS.MIN)},
-        {description: 'All fields: Average values C3', requestData: getPetRequestData(DATA_OPTIONS.AVERAGE)}
+        {description: 'All fields: Average values C3', requestData: getPetRequestData(DATA_OPTIONS.AVERAGE)},
+        {description: 'Positive: Create new Pet: Russian language in request C6', requestData: getPetRequestData(DATA_OPTIONS.AVERAGE, false, POOLS.RUSSIAN)},
+        {description: 'Positive: Create new Pet: Chinese language in request C5', requestData: getPetRequestData(DATA_OPTIONS.AVERAGE, false, POOLS.CHINESE)}
+
     ];
 
     testingData.forEach(({description, requestData}) => {
@@ -40,27 +43,9 @@ describe('Tests for create Pet', () => {
         })
     });
 
-    /*
-     let testingDataLang = [
-         {description: 'All fields: Russian language', requestData: getPetLanguageData(1)},
-         {description: 'All fields: Chinese language', requestData: getPetLanguageData(2)}
-     ];
 
-     testingDataLang.forEach(({description,requestData})=>{
-         it(description,()=>{
-             createPet(requestData,false).then(response=>{
-                 expect(response.status).to.eq(200);
-                 expect(response.body).to.have.property('id',requestData.id);
-                 expect(response.body.id).to.be.greaterThan(0);
-                 expect(response.body).to.have.property('name',requestData.name);
-                 expect(response.body.photoUrls).to.deep.equal(requestData.photoUrls);
-                 //expect(response.body.tags).to.deep.equal(requestData.tags);
-             })
-         })
-     });
- */
 
-    it('Positive: Create new Pet: Russian language in request C6', () => {
+  /*  it('Positive: Create new Pet: Russian language in request C6', () => {
         cy.fixture('petRussian').then(pet => {
             createPet(pet).then(response => {
                 expect(response.status).to.eq(200);
@@ -84,7 +69,7 @@ describe('Tests for create Pet', () => {
                 expect(response.body.tags).to.deep.equal(pet.tags);
             })
         })
-    });
+    });*/
 
 
     it('Negative: No values (empty body) C15', () => {
@@ -169,41 +154,42 @@ describe('Tests for create Pet', () => {
         })
     })
 
-    it('Negative: boundary value for "name" field C23', () => {
+    it('Negative: Length of name field exceeds the max value C23', () => {
        let dataSet=getPetRequestData(PET_LIMIT, true);
         dataSet.name= Chance().string({length: PET_LIMIT.name.max + 1});
         createPet(dataSet, false).then(response => {
             expect(response.status).to.eq(400);
-            expect(response.message).to.deep.eq('fieldName','@fieldName');
-            expect(response.message).to.deep.eq('fieldError','Length must be between @minLength and @maxLength');
+            expect(response.messages[0].fieldName).to.eq(`${PET_LIMIT.name}`);
+            expect(response.messages[0].fieldError).to.eq(`Length must be between ${PET_LIMIT.name.min} and ${PET_LIMIT.name.max}`);
         })
     });
 
-    it('Negative: boundary value for "category" field C24', () => {
+    it('Negative: Length of category field exceeds the max value C24', () => {
         let dataSet=getPetRequestData(PET_LIMIT, true);
         dataSet.category.name = Chance().string({length: PET_LIMIT.category.name.max + 1});
+
         createPet(dataSet, false).then(response => {
             expect(response.status).to.eq(400);
-           expect(response.message).to.deep.eq('fieldName','@fieldName');
-          expect(response.message).to.deep.eq('fieldError','Length must be between @minLength and @maxLength');
+            expect(response.messages[0].fieldName).to.eq(`${PET_LIMIT.category.name}`);
+            expect(response.messages[0].fieldError).to.eq(`Length must be between ${PET_LIMIT.category.name.min} and ${PET_LIMIT.category.name.max}`);
         })
     });
-    it('Negative: boundary value for "photoUrls" field C25', () => {
+    it('Negative: Length of photoUrls field exceeds the max value C25', () => {
         let dataSet=getPetRequestData(PET_LIMIT, true);
         dataSet.photoUrls=fillUrls(PET_LIMIT.photoUrls.urlCount.max+1);
         createPet(dataSet, false).then(response => {
             expect(response.status).to.eq(400);
-            expect(response.message).to.deep.eq('fieldName','@fieldName');
-          expect(response.message).to.deep.eq('fieldError','Length must be between @minLength and @maxLength');
+            expect(response.messages[0].fieldName).to.eq(`${PET_LIMIT.photoUrls.urlCount}`);
+            expect(response.messages[0].fieldError).to.eq(`Length must be between ${PET_LIMIT.photoUrls.urlCount.min} and ${PET_LIMIT.photoUrls.urlCount.max}`);
         })
     })
-    it('Negative: boundary value for "tags" field C26', () => {
+    it('Negative: Length of tags field exceeds the max value C26', () => {
         let dataSet=getPetRequestData(PET_LIMIT, true);
-        dataSet.tags=fillTags(PET_LIMIT.tags.urlCount.maxValue+1)
+        dataSet.tags=fillTags(PET_LIMIT.tags.name.max+1)
         createPet(dataSet, false).then(response => {
             expect(response.status).to.eq(400);
-            expect(response.message).to.deep.eq('fieldName','@fieldName');
-            expect(response.message).to.deep.eq('fieldError','Length must be between @minLength and @maxLength');
+            expect(response.messages[0].fieldName).to.eq(`${PET_LIMIT.tags.name}`);
+            expect(response.messages[0].fieldError).to.eq(`Length must be between ${PET_LIMIT.tags.name.min} and ${PET_LIMIT.tags.name.max}`);
         })
     })
 
