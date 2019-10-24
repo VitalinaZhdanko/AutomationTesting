@@ -3,6 +3,15 @@
   "integrationFolder": "cypress/all-tests",
   "projectId": "zuaa1n",
   "env": {
-    "googleURL": "https://store.google.com/us"
+    "googleURL": "https://store.google.com/us",
+    "petStoreApiUrl": "https://petstore.swagger.io/v2"
+  },
+   "reporter": "cypress-testrail-accumulative-reporter",
+  "reporterOptions": {
+    "domain": "automationuniversity.testrail.com",
+    "username": "kateyurasova10@gmail.com",
+    "password": "AutomationUniversity2019",
+    "projectId": 1,
+    "suiteId": 1
   }
 }
