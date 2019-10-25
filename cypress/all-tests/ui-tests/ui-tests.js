@@ -31,7 +31,7 @@ describe ('UI tests', () => {
             AccessoriesPage.performSearch(productData.name)
 
             SearchResultsPage.getProductByDocId(productData.url)
-                .should('exist')
+               .should('exist')
         })
     })
 
