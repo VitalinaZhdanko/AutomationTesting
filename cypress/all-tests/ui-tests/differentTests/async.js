@@ -1,3 +1,5 @@
+import Chance from 'chance'
+
 before(() => {
     cy.request(`${Cypress.env('googleUrl')}`).its('body').as("accessories")
 })
@@ -10,7 +12,7 @@ it('The first way. Get number of products and get the first product ', function 
     let aRRay
     let array = this.accessories.products[0]
     for (let item in array) {
-        aRRay+=`${array[item]}\n`
+        aRRay += `${array[item]}\n`
     }
     cy.log(aRRay)
 
@@ -30,11 +32,13 @@ it('The second way. Get number of products and get the first product', function 
         let aRRay
         let array = products.products[0]
         for (let item in array) {
-           // cy.log(array[item])
-            aRRay+=`${array[item]}\n`
+            // cy.log(array[item])
+            aRRay += `${array[item]}\n`
         }
         cy.log(aRRay)
 
 
     })
+
+
 })
