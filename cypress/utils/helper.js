@@ -34,25 +34,13 @@ export const difference=(setA,setB)=>{
     return _difference;
 }
 
-export const printPlanets=(planets, solar=false)=>{
-    if(!solar){
-    planets.forEach(function (item,index,planets) {
-        cy.log(`${index}: planet: ${item.planet}, radius: ${item.radius}, density: ${item.density}, distance: ${item.distance}`)
-     //   cy.log(JSON.stringify(item));
-    })}
-    else{
-        planets.forEach(function (planet,index,planets) {
+export const printPlanets=(planets)=>{
+           planets.forEach(planet=> {
             cy.log(JSON.stringify(planet));
            })
-        //
-        // planets.forEach(planet => {
-        //     cy.log(Object.keys(planet).map(key => key + ':' + planet[key]).join(', '));
-        // })
-
-    }
 }
 
 export const getPlanetsWithDistance=(planets, number)=>{
-    return planets.filter(planet=>planet.distance>5)
+    return planets.filter(planet=>planet.distance>number)
 }
 

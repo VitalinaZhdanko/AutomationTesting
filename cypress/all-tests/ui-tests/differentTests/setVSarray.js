@@ -81,10 +81,10 @@ it('the 4 exercise', function () {
     printPlanets(planets);
 
     let planetsSolarSystem = planets.map((item) => {
-        item.solarSystem = "SolarSystem";
+        item.solarSystem = "true";
         return item;
     })
-    printPlanets(planetsSolarSystem, true)
+    printPlanets(planetsSolarSystem)
 
     planetsSolarSystem.push({
         planet: "SomeNewPlanet",
@@ -93,20 +93,20 @@ it('the 4 exercise', function () {
         distance: 30.07,
         solarSystem: false
     })
-    printPlanets(planetsSolarSystem, true)
+    printPlanets(planetsSolarSystem)
 
     cy.log(`The sum of radius of all the planets: ${planetsSolarSystem.reduce((item, currentValue) =>
         item + currentValue.radius, 0)}`)
 
     cy.log("====Planets with distance > 5 ====")
-    printPlanets(getPlanetsWithDistance(planetsSolarSystem, 5), true)
+    printPlanets(getPlanetsWithDistance(planetsSolarSystem, 5))
 
     planetsSolarSystem.splice(planetsSolarSystem.indexOf("SomeNewPlanet"));
     cy.log('Delete')
-    printPlanets(planetsSolarSystem, true);
+    printPlanets(planetsSolarSystem);
 
     cy.log('Sort by radius')
-    printPlanets(planetsSolarSystem.sort((a, b) => a.radius - b.radius), true)
+    printPlanets(planetsSolarSystem.sort((a, b) => a.radius - b.radius))
 
     cy.log("Sorting by name");
     planetsSolarSystem.sort(function (a, b) {
@@ -115,7 +115,7 @@ it('the 4 exercise', function () {
         if (planetA > planetB) return 1
         return 0
     });
-    printPlanets(planetsSolarSystem, true);
+    printPlanets(planetsSolarSystem);
 
     cy.log(`Length of planetsSolarSystem: ${planetsSolarSystem.length}`)
 })
@@ -125,9 +125,9 @@ describe('currencyConverter', () => {
     it('Check value', () => {
         cy.fixture('currencyConverter').then(item => {
             cy.visit('https://www.xe.com/currencyconverter/');
-            cy.get('#to').click().type(`${currency.shortName}{enter}{enter}`);
-            cy.get('span[class="converterresult-toAmount"]').should(($this) => {
-                expect($this).to.contain(`${currency.rate}`)
+            cy.get('#to').click().type(`${item.shortName}{enter}{enter}`);
+            cy.get('.converterresult-toAmount').should(($this) => {
+                expect($this).to.contain(`${item.rate}`)
             })
         })
     })
