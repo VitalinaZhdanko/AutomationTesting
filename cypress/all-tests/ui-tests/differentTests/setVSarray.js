@@ -124,10 +124,11 @@ it('the 4 exercise', function () {
 describe('currencyConverter', () => {
     it('Check value', () => {
         cy.fixture('currencyConverter').then(item => {
+            let currency=Chance().pickone(item.rates);
             cy.visit('https://www.xe.com/currencyconverter/');
-            cy.get('#to').click().type(`${item.shortName}{enter}{enter}`);
-            cy.get('.converterresult-toAmount').should(($this) => {
-                expect($this).to.contain(`${item.rate}`)
+            cy.get('#to').click().type(`${currency.shortName}{enter}{enter}`);
+            cy.get('span[class="converterresult-toAmount"]').should(($this) => {
+                expect($this).to.contain(`${currency.rate}`)
             })
         })
     })
