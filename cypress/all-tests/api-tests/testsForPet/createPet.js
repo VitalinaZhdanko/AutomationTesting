@@ -37,9 +37,11 @@ describe('Tests for create Pet', () => {
         let requestData = getPetRequestData(DATA_OPTIONS.AVERAGE, true)
         createPet(requestData).then(response => {
             expect(response.status).to.eq(200);
+
             expect(response.body.id).to.be.greaterThan(0)
             expect(response.body).to.have.property('name', requestData.name);
             expect(response.body.photoUrls).to.deep.equal(requestData.photoUrls);
+            cy.writeFile('emptyBg.txt',response);
         })
     });
 
@@ -76,10 +78,10 @@ describe('Tests for create Pet', () => {
         let requestData = {}
         createPet(requestData).then(response => {
             expect(response.status).to.eq(400);
-            expect(response.body).to.have.property('id', requestData.id);
-            expect(response.body.id).to.be.greaterThan(0)
+            expect(response.statusText).to.eq('Bad Request');
         })
     })
+
 
     it('Negative: No body in request С16', () => {
         cy.request({method: 'POST', url: `${API_URL}/pet`, failOnStatusCode: false}).then(response => {
