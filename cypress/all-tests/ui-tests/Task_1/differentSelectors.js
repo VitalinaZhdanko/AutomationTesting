@@ -1,5 +1,4 @@
 
-
 describe('Selector practice', () => {
     it('Selectors', () => {
         cy.visit('https://techstepacademy.com/training-ground')
@@ -22,7 +21,5 @@ describe('Selector practice', () => {
         cy.get('div.sqs-block-content > p')
         cy.xpath('//div[@class="sqs-block-content"]/child::p')
 
-
     })
-
 })
