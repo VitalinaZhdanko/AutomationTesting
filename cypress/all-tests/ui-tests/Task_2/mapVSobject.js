@@ -1,4 +1,7 @@
-    it('Tests for MAP', function () {
+import Chance from 'chance'
+import {printAgeStatus} from "../../../utils/helper"
+
+    it('Work with MAP', function () {
 
         let planetsMap = new Map()
         planetsMap.set("Mercury", {radius: 2440, density: 5.43, distance: 0.395});
@@ -52,3 +55,47 @@
         }
 
     })
+
+
+    it('Condition operators',function () {
+
+        cy.log('Selection using if')
+        let age=chance.age(), ageStatus;
+        if (age==12)
+           ageStatus='child'
+        else if(age<18)
+                ageStatus='teen'
+        else if(age<60)
+               ageStatus='adult'
+        else
+            ageStatus='senior'
+         printAgeStatus(age,ageStatus)
+
+
+        cy.log('Selection using switch')
+        switch (true) {
+            case age<12 :
+                ageStatus='child';
+                break;
+            case age<18:
+                ageStatus='teen';
+                break;
+            case age<60:
+                ageStatus='adult';
+                break;
+            case age<120:
+                ageStatus='senior';
+                break;
+
+        }
+        printAgeStatus(age,ageStatus)
+
+
+        cy.log('Selection using ?')
+        ageStatus=(age<12)?'child':
+            (age<18)?'teen':
+                (age<60)?'adult':
+                    'senior'
+        printAgeStatus(age,ageStatus)
+
+        })

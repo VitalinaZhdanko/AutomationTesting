@@ -44,3 +44,6 @@ export const getPlanetsWithDistance=(planets, number)=>{
     return planets.filter(planet=>planet.distance>number)
 }
 
+export const printAgeStatus=(age,ageStatus)=>{
+    cy.log(`Age ${age} : ${ageStatus}`)
+}
