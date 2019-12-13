@@ -8,9 +8,16 @@ class AccessoriesPageSneaker {
         cy.visit(`${Cypress.env('sneakerUrl')}/katalog/obuv-belarus/kupit-krossovki-v-belarusi/nike-wmns-m2k-tekno-ao3108-403`);
     }
 
+
+
+    openCard() {
+    cy.visit(`${Cypress.env('sneakerUrl')}/cart/`);
+    }
+
     addProduct(count) {
         if (count == 1) {
             cy.log("WHEN User selects the size of the sneakers")
+            //cy.get('select option:first')
             cy.get('select').select('36.5')
 
             cy.log("AND User adds sneakers to the card")
