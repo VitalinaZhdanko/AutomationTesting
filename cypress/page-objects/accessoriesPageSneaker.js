@@ -25,10 +25,10 @@ class AccessoriesPageSneaker {
         }
         else {
             cy.log("WHEN User opens the product")
-            cy.get('.qw-button').contains('В корзину').eq(0).click({force: true})
+            cy.get('.qw-button').contains('В корзину').eq(0).click({force: true}).wait(3000)
 
             cy.log("WHEN User selects the size of the sneakers")
-            cy.get('select#input-option704767').select("41")
+            cy.get('select').eq(0).focus().select('43',{timeout:100})
 
             cy.log("AND User adds sneakers to the card")
             cy.get('#button-cart').click().wait(3000)
@@ -38,10 +38,10 @@ class AccessoriesPageSneaker {
             cy.go('back')
 
             cy.log("WHEN User opens the product")
-            cy.get('.qw-button').eq(1).click({force: true})
+            cy.get('.qw-button').eq(1).click({force: true}).wait(3000)
 
             cy.log("WHEN User selects the size of the sneakers")
-            cy.get('select#input-option704766').select("45")
+            cy.get('select').eq(0).focus().select('38')
 
             cy.log("AND User adds sneakers to the card")
             cy.get('#button-cart').click().wait(3000)
