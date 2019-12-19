@@ -1,59 +1,57 @@
 class AccessoriesPageSneaker {
-    openCatalog() {
+
+    open() {
         cy.visit(`${Cypress.env('sneakerUrl')}/katalog/obuv-belarus/kupit-krossovki-v-belarusi/`);
-
     }
-
-    openProduct() {
-        cy.visit(`${Cypress.env('sneakerUrl')}/katalog/obuv-belarus/kupit-krossovki-v-belarusi/nike-wmns-m2k-tekno-ao3108-403`);
-    }
-
-
 
     openCard() {
-    cy.visit(`${Cypress.env('sneakerUrl')}/cart/`);
+        cy.visit(`${Cypress.env('sneakerUrl')}/cart/`);
     }
 
-    addProduct(count) {
-        if (count == 1) {
-            cy.log("WHEN User selects the size of the sneakers")
-            //cy.get('select option:first')
-            cy.get('select').select('36.5')
-
-            cy.log("AND User adds sneakers to the card")
-            cy.get('#button-cart').click().wait(3000)
-        }
-        else {
-            cy.log("WHEN User opens the product")
-            cy.get('.qw-button').contains('В корзину').eq(0).click({force: true}).wait(3000)
-
-            cy.log("WHEN User selects the size of the sneakers")
-            cy.get('select').eq(0).focus().select('43',{timeout:100})
-
-            cy.log("AND User adds sneakers to the card")
-            cy.get('#button-cart').click().wait(3000)
-
-            cy.log("AND User is able to select else product")
-            cy.get('.button.btn.btn-primary.btn-lg').contains('Выбрать ещё').click()
+    addProductsToCard(productsData) {
+        productsData.forEach(product => {
+            this.addProductToCard(product.productIndex)
             cy.go('back')
-
-            cy.log("WHEN User opens the product")
-            cy.get('.qw-button').eq(1).click({force: true}).wait(3000)
-
-            cy.log("WHEN User selects the size of the sneakers")
-            cy.get('select').eq(0).focus().select('38')
-
-            cy.log("AND User adds sneakers to the card")
-            cy.get('#button-cart').click().wait(3000)
-
-            cy.log("WHEN User reloads page")
-            cy.reload()
-        }
+        })
     }
+
+    addProductToCard(productIndex) {
+        cy.log("WHEN User opens the product")
+        cy.get('button.qw-button').eq(productIndex).click({force: true}).wait(3000)
+
+        cy.log("WHEN User selects the size of the sneakers")
+        this.chooseSize()
+
+        cy.log("AND User adds sneakers to the card")
+        this.addToCard()
+    }
+
+    chooseSize() {
+        cy.get('select').eq(0).find('option').its('length').then(numOptions => {
+            var size = chance.integer({min: 0, max: numOptions - 1})
+            cy.get('select').eq(0).find('option').eq(1).invoke('text').then(text => {
+                cy.get('select').eq(0).select(text.trim())
+            })
+        })
+    }
+
+    addToCard() {
+        cy.get('#button-cart').click().wait(3000).focus()
+    }
+
+
+    changeSize(line) {
+        line.forEach(product => {
+            let count = chance.integer({min: 2, max: 100})
+            cy.get('input.form-control').eq(product.lineIndex).clear().type(`${count}{enter}`)
+
+            cy.get('input.form-control').eq(product.lineIndex).should('have.value', `${count}`)
+        })
+    }
+
 
     checkResults(count) {
-        if (count == 1)
-        {
+        if (count == 1) {
             cy.log("THEN Data product is presented in the card")
             cy.get('tr').eq(2).should('contain', 'Nike WMNS M2K TEKNO AO3108-403')
             cy.log("AND The size of product is egual to the selected size")
@@ -71,12 +69,6 @@ class AccessoriesPageSneaker {
             cy.get('tr').eq(4).should('contain', 'Размер (EUR) 45')
 
         }
-    }
-
-
-    performSearch(productToSearch) {
-        this.searchIcon.click();
-        this.searchInput.type(`${productToSearch}{enter}`);
     }
 
 

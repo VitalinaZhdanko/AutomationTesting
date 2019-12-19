@@ -1,118 +1,86 @@
-import accessoriesPageSneaker from "../../page-objects/accessoriesPageSneaker"
+import AccessoriesSneakerPage from "../../page-objects/accessoriesPageSneaker"
 import Chance from 'chance'
 
-describe ('UI tests for SneakerBar', () => {
+describe('UI tests for SneakerBar', () => {
 
     it('Positive: User is able to add one product to the card', () => {
 
-        cy.log("GIVEN User is at Product Page")
-        accessoriesPageSneaker.openProduct()
+        cy.log("GIVEN User is at Catalog Page")
+        AccessoriesSneakerPage.open()
 
         cy.log("WHEN User adds the product to the card")
-        accessoriesPageSneaker.addProduct(1)
+        let productsData = [{productIndex: 0}]
+        AccessoriesSneakerPage.addProductsToCard(productsData)
 
-        cy.log("THEN Check results")
-        accessoriesPageSneaker.checkResults(1)
 
         cy.log("THEN Reload page")
         cy.reload()
-   })
 
-    it('Positive: User is able to add several products to the card from Catalog Page', () => {
 
-        cy.log("GIVEN User is at Catalog Page")
-        accessoriesPageSneaker.openCatalog()
-
-        cy.log("WHEN User adds several products")
-        accessoriesPageSneaker.addProduct(2)
-
-        cy.log("THEN Check results")
-        accessoriesPageSneaker.checkResults(2)
+        // cy.log("THEN Check results")
+        // AccessoriesSneakerPage.checkResults(1)
+        
     })
 
+    it('Positive: User is able to add several products to the card', () => {
+
+        cy.log("GIVEN User is at Catalog Page")
+        AccessoriesSneakerPage.open()
+
+        cy.log("WHEN User adds several products")
+        let productsData = [{productIndex: 0}, {productIndex: 1}, {productIndex: 2}]
+        AccessoriesSneakerPage.addProductsToCard(productsData)
+        cy.reload()
+
+        // cy.log("THEN Check results")
+        // AccessoriesSneakerPage.checkResults(2)
+    })
 
 
     it('Positive: User is able to change average number of item in the card', () => {
 
         cy.log("GIVEN User adds product and opens Card Page with one product")
-        accessoriesPageSneaker.openProduct()
-        accessoriesPageSneaker.addProduct(1)
-        accessoriesPageSneaker.openCard()
-        let count=chance.integer({ min: 2, max: 100 })
-        cy.get('input[value="1"]').clear().type(`${count}{enter}`)
-        cy.get('input').should('have.value', `${count}`)
+        AccessoriesSneakerPage.open()
+        let productsData = [{productIndex: 0}]
+        AccessoriesSneakerPage.addProductsToCard(productsData)
+        cy.reload()
+        AccessoriesSneakerPage.openCard()
+
+        cy.log("WHEN User resizes item")
+        let tableLine = [{lineIndex: 1}]
+        AccessoriesSneakerPage.changeSize(tableLine)
+
+    })
+
+
+    it('Positive: User is able to change number of different items in the card', () => {
+
+        cy.log("GIVEN User User adds several products and opens Card Page ")
+        AccessoriesSneakerPage.open()
+        let productsData = [{productIndex: 0}, {productIndex: 1}, {productIndex: 2}]
+        AccessoriesSneakerPage.addProductsToCard(productsData)
+        cy.reload()
+        AccessoriesSneakerPage.openCard()
+
+        cy.log("WHEN User resizes items")
+        let tableLine = [{lineIndex: 1}, {lineIndex: 2}, {lineIndex: 3}]
+        AccessoriesSneakerPage.changeSize(tableLine)
 
     })
 
     it('Positive: User is able to change max number of item in the card', () => {
 
         cy.log("GIVEN User adds product and opens Card Page with one product")
-        accessoriesPageSneaker.openProduct()
-        accessoriesPageSneaker.addProduct(1)
-        accessoriesPageSneaker.openCard()
+        AccessoriesSneakerPage.open()
+        let productsData = [{productIndex: 0}]
+        AccessoriesSneakerPage.addProductsToCard(productsData)
+        cy.reload()
+        AccessoriesSneakerPage.openCard()
 
         cy.get('input[value="1"]').clear().type(`10000000000{enter}`)
         cy.get('input').should('have.value', '10000000000')
 
     })
 
-    it('Negative: User is able to write string in CountField', () => {
-
-        cy.log("GIVEN User adds product and opens Card Page with one product")
-        accessoriesPageSneaker.openProduct()
-        accessoriesPageSneaker.addProduct(1)
-        accessoriesPageSneaker.openCard()
-
-        let countString=chance.string();
-        cy.log('Except error message')
-        cy.get('input[value="1"]').clear().type(`${countString}{enter}`)
-        cy.get('input').should('have.value', `${countString}`)
-
-    })
-
-    it('Negative: User is able to write script in CountField', () => {
-
-        cy.log("GIVEN User adds product and opens Card Page with one product")
-        accessoriesPageSneaker.openProduct()
-        accessoriesPageSneaker.addProduct(1)
-        accessoriesPageSneaker.openCard()
-
-        cy.log('Except error message')
-        cy.get('input[value="1"]').clear().type(`<script>
-        alert( "Я JavaScript!" );
-        </script>{enter}`)
-        cy.get('input').should('have.value', '1')
-
-    })
-
-    it('Negative: User is able to write negative number in CountField', () => {
-
-        cy.log("GIVEN User adds product and opens Card Page with one product")
-        accessoriesPageSneaker.openProduct()
-        accessoriesPageSneaker.addProduct(1)
-        accessoriesPageSneaker.openCard()
-
-        let countMin=chance.integer({ min: -100, max: -1 })
-        cy.get('input[value="1"]').clear().type(`${countMin}{enter}`)
-        cy.log('Except error message')
-        cy.get('input').should('have.value', `${countMin}`)
-
-    })
-
-    it('Positive: User is able to change number of different items in the card', () => {
-
-        cy.log("GIVEN User is at Catalog Page")
-        accessoriesPageSneaker.openCatalog()
-
-        cy.log("WHEN User adds several products")
-        accessoriesPageSneaker.addProduct(2)
-        accessoriesPageSneaker.openCard()
-        let count=chance.integer({ min: 2, max: 100 })
-        //cy.get('tr').eq(4).should('contain', 'Air Jordan 1 High Zoom \'Fearless\' (BV0006-900)')
-        cy.get('table.table.table-bordered tbody tr input[value="1"]').eq(0).clear().type(`${count}{enter}`).wait(10000)
-        cy.get('table.table.table-bordered tbody tr').get('input[value="1"]').clear().type(`${count}{enter}`)
-        //cy.get('tr').eq(4).get('input').should('have.value', `${count}`)
-
-    })
 
 })
