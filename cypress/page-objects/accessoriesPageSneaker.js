@@ -19,11 +19,22 @@ class AccessoriesPageSneaker {
         cy.log("WHEN User opens the product")
         cy.get('button.qw-button').eq(productIndex).click({force: true}).wait(3000)
 
-        cy.log("WHEN User selects the size of the sneakers")
-        this.chooseSize()
+        cy.get('.col-sm-5 > h1').invoke('text').then(nameProduct=>{
+            nameProduct=nameProduct.replace('Оригинальные кроссовки ', '')
 
-        cy.log("AND User adds sneakers to the card")
-        this.addToCard()
+            cy.log("WHEN User selects the size of the sneakers")
+            this.chooseSize()
+
+            cy.log("AND User adds sneakers to the card")
+            this.addToCard()
+
+            cy.log("Then Check results")
+            cy.reload()
+            this.openCard()
+
+            cy.get('tr > td:nth-child(2) > a').should('contain', `${nameProduct}`)
+            cy.go('back')
+        })
     }
 
     chooseSize() {
@@ -48,29 +59,6 @@ class AccessoriesPageSneaker {
             cy.get('input.form-control').eq(product.lineIndex).should('have.value', `${count}`)
         })
     }
-
-
-    checkResults(count) {
-        if (count == 1) {
-            cy.log("THEN Data product is presented in the card")
-            cy.get('tr').eq(2).should('contain', 'Nike WMNS M2K TEKNO AO3108-403')
-            cy.log("AND The size of product is egual to the selected size")
-            cy.get('tr').eq(2).should('contain', 'Размер (EUR) 36.5')
-        }
-        else {
-            cy.log("THEN Data product is presented in the card")
-            cy.get('tr').eq(2).should('contain', 'Puma x BEAMS CELL Ultra (37280901)')
-            cy.log("AND The size of product is egual to the selected size")
-            cy.get('tr').eq(2).should('contain', 'Размер (EUR) 41')
-
-            cy.log("THEN Data product is presented in the card")
-            cy.get('tr').eq(4).should('contain', 'Air Jordan 1 High Zoom \'Fearless\' (BV0006-900)')
-            cy.log("AND The size of product is egual to the selected size")
-            cy.get('tr').eq(4).should('contain', 'Размер (EUR) 45')
-
-        }
-    }
-
 
 }
 
