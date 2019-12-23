@@ -61,7 +61,7 @@ import {printAgeStatus} from "../../../utils/helper"
 
         cy.log('Selection using if')
         let age=chance.age(), ageStatus;
-        if (age==12)
+        if (age<12)
            ageStatus='child'
         else if(age<18)
                 ageStatus='teen'

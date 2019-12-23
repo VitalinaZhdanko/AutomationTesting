@@ -4,6 +4,7 @@
   "projectId": "zuaa1n",
   "env": {
     "googleURL": "https://store.google.com/us",
+    "sneakerUrl": "https://sneakers.by",
     "petStoreApiUrl": "https://petstore.swagger.io/v2",
     "googleUrl":"https://storage.googleapis.com/mannequin/2018/data/productwall/accessories/en_us.json?c=1571310916"
   },
@@ -14,5 +15,7 @@
     "password": "AutomationUniversity2019",
     "projectId": 1,
     "suiteId": 1
+
+
   }
 }
