@@ -9,32 +9,52 @@ class AccessoriesPageSneaker {
     }
 
     addProductsToCard(productsData) {
+        let productArray = []
         productsData.forEach(product => {
             this.addProductToCard(product.productIndex)
+            cy.fixture(`product${product.productIndex}.json`).then(product => {
+                productArray.push(product)
+            })
             cy.go('back')
         })
+        console.log(productArray)
+        cy.writeFile('./cypress/fixtures/addedProduct.json', productArray)
     }
 
     addProductToCard(productIndex) {
+        let product = {productIndex: productIndex}
         cy.log("WHEN User opens the product")
         cy.get('button.qw-button').eq(productIndex).click({force: true}).wait(3000)
 
-        cy.get('.col-sm-5 > h1').invoke('text').then(nameProduct=>{
-            nameProduct=nameProduct.replace('Оригинальные кроссовки ', '')
+        cy.get('.col-sm-5 > h1').invoke('text').then(nameProduct => {
+            nameProduct = nameProduct.replace('Оригинальные кроссовки ', '')
 
+            product.name = nameProduct
             cy.log("WHEN User selects the size of the sneakers")
+
+            cy.get('select').eq(0).find('option').its('length').then(numOptions => {
+                var size = chance.integer({min: 0, max: numOptions - 1})
+                cy.get('select').eq(0).find('option').eq(1).invoke('text').then(text => {
+                    cy.get('select').eq(0).select(text.trim())
+                    product.size = text.trim()
+                    cy.writeFile(`./cypress/fixtures/product${productIndex}.json`, product)
+                })
+            })
             this.chooseSize()
 
             cy.log("AND User adds sneakers to the card")
             this.addToCard()
-
-            cy.log("Then Check results")
-            cy.reload()
-            this.openCard()
-
-            cy.get('tr > td:nth-child(2) > a').should('contain', `${nameProduct}`)
-            cy.go('back')
         })
+    }
+
+    checkResults(){
+        cy.reload()
+        this.openCard()
+
+        cy.fixture('addedProduct').then(product=>{
+                cy.get('#content > form > div > table > tbody > tr > td:nth-child(2) > a').should('contain', `${product[0].name}`)
+            })
+
     }
 
     chooseSize() {

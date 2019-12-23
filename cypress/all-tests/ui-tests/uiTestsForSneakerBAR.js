@@ -1,3 +1,4 @@
+import Chance from 'chance'
 import AccessoriesSneakerPage from "../../page-objects/accessoriesPageSneaker"
 
 describe('UI tests for SneakerBar', () => {
@@ -11,6 +12,8 @@ describe('UI tests for SneakerBar', () => {
         let productsData = [{productIndex: 0}]
         AccessoriesSneakerPage.addProductsToCard(productsData)
 
+        cy.log("THEN Check results")
+        AccessoriesSneakerPage.checkResults()
     })
 
     it('Positive: User is able to add several products to the card', () => {
@@ -22,6 +25,9 @@ describe('UI tests for SneakerBar', () => {
         let productsData = [{productIndex: 0}, {productIndex: 1}, {productIndex: 2}]
         AccessoriesSneakerPage.addProductsToCard(productsData)
         cy.reload()
+        
+        cy.log("THEN Check results")
+        AccessoriesSneakerPage.checkResults()
     })
 
 
@@ -29,7 +35,7 @@ describe('UI tests for SneakerBar', () => {
 
         cy.log("GIVEN User adds product and opens Card Page with one product")
         AccessoriesSneakerPage.open()
-        let productsData = [{productIndex: 0}]
+        let productsData = [{productIndex: 0, name:""}]
         AccessoriesSneakerPage.addProductsToCard(productsData)
         cy.reload()
         AccessoriesSneakerPage.openCard()
